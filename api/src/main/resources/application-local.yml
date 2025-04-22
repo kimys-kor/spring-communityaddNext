@@ -1,0 +1,63 @@
+key:
+  postImgUrl: /C:/Users/demisoda/postImgPath
+  postImgPath: /C:/Users/demisoda/postImgPath
+  signupPoint: 20
+  loginPoint: 10
+  savePostPoint: 50
+  saveCommentPoint: 20
+  savePromotionPoint: 30
+  bannerImgUrl: /C:/Users/demisoda/bannerImgPath
+  bannerImgPath: /C:/Users/demisoda/bannerImgPath
+
+spring:
+  config:
+    import:
+      - classpath:/app/security/security.yml
+
+  profiles:
+    active: prod
+
+  mvc:
+    converters:
+      preferred-jason-mapper: gson
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/community?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    hikari:
+      connectionTimeout: 10000
+      idleTimeout: 600000
+      maximum-pool-size: 300
+      minimum-idle: 5
+      maxLifetime: 10000
+      leak-detection-threshold: 2000
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      naming:
+        strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      enabled: true
+      max-request-size: 50MB
+
+  web:
+    resources:
+      static-locations: file:///C:/Users/demisoda/postImgPath/, file:///C:/Users/demisoda/bannerImgPath/
+
+
+
+
+server:
+  servlet:
+    encoding:
+      charset: utf-8
